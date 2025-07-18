@@ -1,0 +1,97 @@
+
+{% extends "home.html" %}
+{% load static %}
+
+{% block css %} 
+    <link rel="stylesheet" href="{% static 'css/homecontent.css' %}">
+{% endblock %}
+
+{% block title %}Project Health Report{% endblock %}
+
+{% block content %}
+
+    <header class="col-100 floatLft ">
+        <div class="section3 col-100 floatLft ">
+            <div class="wrapper">
+                <!-- <section class="bimg col-100"></section> -->
+                <section class="sec col-100 floatLft">
+                    <div class="bg1 col-100 floatLft">
+                        <img src="{% static 'img/home.jpg' %}" alt="bg1" loading="lazy">
+                        <div class="content col-100 floatRgt">
+                            <h1>Streamlined Management<br>Smarter Reports</h1>
+                            <p>From planning to progress, gain clarity and control with<br> data-driven reporting and
+                                efficient project workflows.</p>
+                        </div>
+                    </div>
+            </div>
+        </div>
+
+    </header>
+    </section>
+    <section class="sec1 col-100 floatLft">
+        <div class="contain col-100 floatLft">
+            <h2>Welcome To <span>LogicLoom</span></h2>
+            <p>A hierarchical target planning and tracking system is to be built to visualize and report
+                on how project targets assigned by the PMO flow down through VPs → RMs → Centers →
+                Batches, and how actual enrollments match those targets. This tool is to support
+                multiple programs like Deep Tech, SAVE, BEST, Diya, etc. and must be capable of
+                generating multi-dimensional reports.
+            </p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="wrapper">
+            <div class="containers1">
+                <p>Features</p>
+            </div>
+
+            <div class="cards">
+                <div class="card">
+                    <div class="cardImg">
+                        <img src="{% static 'img/i1.png' %}" alt="Technology Staffing">
+                    </div>
+                    <div class="card1">
+                        <h3>MULTIUSER </h3>
+                        <p>Allows multiple people to access and use <br>the system, each with their own account<br> or role.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="cardImg">
+                        <img src="{% static 'img/i2.png' %}" alt="Business Process Staffing">
+                    </div>
+                    <div class="card1">
+                        <h3> Project Creation and Management </h3>
+                        <p>Enables users to start new projects,<br> set details, assign tasks, and <br>monitor progress over time.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="cardImg">
+                        <img src="{% static 'img/i3.png' %}" alt="Healthcare Staffing">
+                    </div>
+                    <div class="card1">
+                        <h3>Report Generation</h3>
+                        <p>Creates organized summaries of data<br> in formats like charts or tables for<br> analysis.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="cardImg">
+                        <img src="{% static 'img/i4.png' %}" alt="RPO Services">
+                    </div>
+                    <div class="card1">
+                        <h3>Project Target Allocation</h3>
+                        <p>Distributes specific goals or objectives<br> to teams or individuals within a project<br> for better tracking and accountability.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+    <div class="footer">
+        <p>© Copyright LogicLoom (Shiba & Rupali) All Rights Reserved</p>
+    </div></footer>
+
+{% endblock %}
