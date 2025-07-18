@@ -1,0 +1,51 @@
+{% extends "home.html" %}
+{% load static %}
+
+{% block css %} 
+    <link rel="stylesheet" href="{% static 'css/home_profile.css' %}">
+{% endblock %}
+
+{% block title %}
+    User Profile 
+{% endblock  %}
+<!-- <h1>hello {{ Multiuser.username }}</h1>   Multiuser - model created, username - variable in form created -->
+
+{% block content %}
+
+    <div class="sidenav">
+        <div class='user_data'>
+            <img src="{% static 'img/user_icon.png' %}" alt="user-icon" >
+            <div class="user_info">
+                <h2>{{ user.username }}</h2>
+                <h5>{{ user.role }}</h5>
+            </div>
+        </div><br><br>
+        {% if user.is_authenticated %}
+            {% if user.role == 'pmo' %}
+                <a href="{% url 'n_createproject' %}">Create Project</a>
+
+            {% elif user.role == 'vp' %}
+                <a href="{% url 'n_assign_region' %}">RM (Regional Manager)</a>
+
+            {% elif user.role == 'rm' %}
+                <a href="{% url 'n_assign_center' %}">CM (Center Manager)</a>
+
+            {% else %}
+                <a href="{% url 'n_create_batch' %}">Create Batch</a>
+                <a href="{% url 'n_batchlist' %}">Batches</a>
+
+            {% endif %}
+
+            <a href="{% url 'n_projectlist' %}">Projects</a>
+            <a href="{% url 'n_filter_report' %}">Reports</a>
+            <br>
+            <a href="{% url 'n_changepassword' %}">Change Password</a>
+        {% endif %}
+	</div>
+
+    <main class='main_class'>
+        {% block profile_content %}
+        {% endblock %}
+    </main>
+
+{% endblock %} 

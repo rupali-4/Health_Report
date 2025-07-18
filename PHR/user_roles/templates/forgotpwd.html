@@ -1,0 +1,61 @@
+{% extends "home.html" %}
+{% load static %}
+
+{% block css %} 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login_register.css' %}">
+{% endblock %}
+
+{% block title %} 
+    Forgot Password
+{% endblock %}
+
+{% block content %} 
+
+    <div class="login-wrapper">
+        <div class="login-form">
+            <h2 class="login-title">Forgot Password</h2>
+            <p class="login-subtitle">Reset your credentials securely</p>
+
+            {% if success %}
+                <p style="color: green;">Password changed successfully. Please <a href="{% url 'n_login' %}">login</a>.</p>
+            {% else %}
+                <form method="POST">
+                    {% csrf_token %}
+                    <label>Username:</label><br>
+                    <input type="text" name="username" value="{{ username|default_if_none:'' }}">
+                    <br><br>
+                    {% if show_question %}
+                        <label>Security Question:</label><br>
+                        <b>{{ question }}</b> <br><br>
+
+                        <label>Answer:</label><br>
+                        <input type="password" name="security_answer"> <br><br>
+                    {% endif %}
+
+                    {% if show_password_fields %}
+                        <!-- hidden input to keep security_answer without this pwd not updated -->
+                        <input type="hidden" name="security_answer" value="{{ form.data.security_answer }}">
+                        
+                        <label>New Password:</label> <br>
+                        <input type="password" name="new_password"> <br><br>
+
+                        <label>Confirm Password:</label> <br>
+                        <input type="password" name="confirm_password"> <br><br>
+                    {% endif %}
+                    
+                    <button type="submit" class="btn1">Continue</button>
+                </form>
+
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <p style="color: red;">{{ error }}</p>
+                    {% endfor %}
+                {% endfor %}
+                {% for error in form.non_field_errors %}
+                    <p style="color: red;">{{ error }}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

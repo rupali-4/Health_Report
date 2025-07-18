@@ -1,0 +1,28 @@
+{% extends "profile.html" %}
+{% load static %}
+
+{% block css %} 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login_register.css' %}">
+{% endblock %}
+
+{% block title %}
+    User: Change Password
+{% endblock  %} 
+
+{% block profile_content %}
+
+    <div class="login-wrapper">
+        <div class="login-form">
+            <h2 class="login-title">Change Password</h2>
+            <p class="login-subtitle">Keep your account secure by updating your password</p>
+
+            <form method="POST" class="password-form">
+                {% csrf_token %}
+                {{ form.as_p }} 
+                
+                <button type="submit" class="btn1">Change Password</button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %} 
