@@ -1,0 +1,46 @@
+{#VP assigns targets to RMs per vertex#}
+{% extends "profile.html" %}
+{% load static %}
+
+{% block css %} 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/vp_rm_center.css' %}">
+{% endblock %}
+
+
+{% block profile_content %}
+
+    <h2>Allocate Vertex Target to RM</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ vpform.as_p }}
+        <button type="submit">Assign Target</button>
+    </form>
+    <br>
+    <h3>Existing Allocations</h3>
+    {% if  has_allocations %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Project</th>
+                    <th>Vertex</th>
+                    <th>RM User</th>
+                    <th>Target</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for alloc in region_assign   %}
+                <tr>
+                    <td>{{ alloc.project.name }}</td>
+                    <td>{{ alloc.vertex }}</td>
+                    <td>{{ alloc.rm_user }}</td>
+                    <td>{{ alloc.target }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No allocations yet.</p>
+    {% endif %}
+
+{% endblock %} 
