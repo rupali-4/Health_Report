@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table { width: 100%; border-collapse: collapse; font-size: 12px; }
+        th, td { border: 1px solid black; padding: 6px; text-align: center; }
+        h2 { text-align: center; }
+    </style>
+</head>
+<body>
+    <h2>Target vs Achievement Report</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Project</th>
+                <th>Center</th>
+                <th>Batch</th>
+                <th>Quarter</th>
+                <th>Vertex</th>
+                <th>Target</th>
+                <th>Achieved</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+            <tr>
+                <td>{{ row.project }}</td>
+                <td>{{ row.center }}</td>
+                <td>{{ row.batch }}</td>
+                <td>{{ row.quarter }}</td>
+                <td>{{ row.vertex }}</td>
+                <td>{{ row.target }}</td>
+                <td>{{ row.achieved }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
