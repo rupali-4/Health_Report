@@ -1,0 +1,94 @@
+{% extends "profile.html" %}
+{% load static %}
+
+{% block css %} 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/create_projectbatch.css' %}">
+{% endblock %}
+
+
+{% block profile_content %}
+  
+  <h2>Create New Project</h2>
+
+  <form method="post">
+    {% csrf_token %}  {# Django security token to protect against CSRF #}
+
+    {{ form.as_p }}  {# Renders name, description, total_target, start/end dates (as <p> tags) #}
+
+    <h3>Vertex Allocations</h3>
+
+    <div id="remaining">Remaining: <span id="remaining-val">0</span></div>
+    {# Live display of remaining target, updated by JS below #}
+
+    <table>
+      <tr>
+        <th>Vertex</th>
+        <th>Target</th>
+      </tr>
+
+      {# Repeat this row for each vertex form passed from the view #}
+      {% for vertex_form in allocation_forms %}
+        <tr>
+          <td>
+            {{ vertex_form.vertex.as_hidden }}  <!-- Hidden input, fixed vertex -->
+            {{ vertex_form.initial.vertex }}     <!-- Display the name only -->
+          </td>
+          <td>
+            {# Input for user to enter numeric target value for this vertex #}
+            <input
+              type="number"
+              name="target_{{ vertex_form.initial.vertex }}"
+              min="0"
+              value="0"
+              class="vertex-input"
+            >
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+
+    {% if error %}
+      <p style="color:red;">{{ error }}</p>    {# Display error if total target ≠ sum of all vertex targets #}
+    {% endif %}
+
+    <br>
+    <button type="submit">Create Project</button>
+  </form>
+
+  <script>
+    // Wait until page content is fully loaded
+    document.addEventListener('DOMContentLoaded', function () {
+      // Get the input field for total_target
+      const totalTargetInput = document.querySelector('#id_total_target');
+      // Get all inputs for individual vertex targets
+      const vertexInputs = document.querySelectorAll('.vertex-input');
+      // Get the span where remaining target will be shown
+      const remainingVal = document.getElementById('remaining-val');
+
+      function updateRemaining() {
+        // Get total_target value (default 0 if empty)
+        const total = parseInt(totalTargetInput.value || '0');
+        // Initialize used target total
+        let used = 0;
+
+        // Add each vertex's target value to the used total
+        vertexInputs.forEach(input => {
+          used += parseInt(input.value || '0');
+        });
+
+        // Calculate remaining target
+        const remaining = total - used;
+        remainingVal.textContent = remaining;    // Update the displayed value in the span
+      }
+
+      // Event listeners to update on any input change
+      totalTargetInput.addEventListener('input', updateRemaining);
+      vertexInputs.forEach(input => {
+        input.addEventListener('input', updateRemaining);
+      });
+
+      updateRemaining();   // Run once on page load
+    });
+  </script>
+
+{% endblock %}
