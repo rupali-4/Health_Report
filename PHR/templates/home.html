@@ -1,0 +1,48 @@
+{% load static %}  <!-- to load static folder for css files (similar to import) -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title> 
+    {% block title %}
+    Project Health Report
+    {% endblock %}
+  </title>
+  <link rel="stylesheet" href="{% static 'css/home_profile.css' %}">
+  
+  {% block css %} {% endblock %}
+
+</head>
+
+<body>
+  <header> 
+    <nav>
+      <div class="nav__content">
+        <div class="logo">
+          <img src="{% static 'img/logo.png' %}" alt="logo"> 
+          <a href="{% url 'n_home' %}">Project Health Report</a>
+        </div>  <!-- above n_home is not file name but attribute from U_urls files name = n_home -->
+        
+        <ul>
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'n_home' %}">Home</a></li> <!-- only visible after navigating to other page/ keep all time visible -->
+            <li><a href="{% url 'n_profile' %}">Profile</a></li> <!-- only visible after login -->
+            <li><a href="{% url 'n_logout' %}">Log Out</a></li> <!-- only visible after login -->
+          {% else %}
+            <li><a href="{% url 'n_home' %}">Home</a></li> <!-- only visible after navigating to other page/ keep all time visible -->
+            <li><a href="{% url 'n_login' %}">Login</a></li> <!-- not visible after login -->
+            <li><a href="{% url 'n_register' %}">Register</a></li> <!-- not visible after login -->
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main style="margin-top: 40px;"> 
+    {% block content %}
+    {% endblock  %}
+  </main>
+
+</body>
+</html>
