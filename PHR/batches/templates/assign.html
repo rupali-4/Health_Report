@@ -1,0 +1,77 @@
+{% extends "profile.html" %}
+{% load static %}
+
+{% block css %} 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/assign.css' %}">
+{% endblock %}
+
+{% block profile_content %}
+
+    {# for vp region to rm #}
+    {% if user.role == 'vp' %}
+
+        <h2 class="form-title">Assign Region to Region Manager (RM)</h2>
+        <form method="post"  class="assign-form">
+            {% csrf_token %}
+            <div class="form-group">
+            {{ vpform.as_p }}
+            </div>
+            <button type="submit" class="btn-submit">Assign Region</button>
+        </form>
+        <br><br>
+        <table class="styled-table">
+            <thead class="thead">
+                <tr class="trow">
+                    <th>RM Name</th>
+                    <th>Region</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for assign in region_assign %}
+                <tr>
+                    <td>{{ assign.rm_user }}</td>
+                    <td>{{assign.get_region_display}}</td>
+                </tr>
+                {% empty %}
+                    <tr><td colspan="2">No region assignments yet.</td></tr>
+                {% endfor %}          
+            </tbody>
+        </table>
+
+    {% endif %}
+
+    {# for rm center to cm #}
+    {% if user.role == 'rm' %}
+
+        <h2 class="form-title">Assign Center to Center Manager (CM)</h2>
+        <form method="post" class="assign-form">
+            {% csrf_token %}
+           <div class="form-group">
+            {{ rmform.as_p }}
+        </div>
+            <button type="submit"  class="btn-submit">Assign Center</button>
+        </form>
+        <br><br>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>CM Name</th>
+                    <th>Center</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for assign in center_assign %}
+                    <tr>
+                        <td>{{ assign.cm_user }}</td>
+                        <td>{{ assign.get_center_display }}</td>
+                    </tr>
+                {% empty %}
+                    <tr><td colspan="2">No center assignments yet.</td></tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+
+    {% endif %}
+
+{% endblock %}
