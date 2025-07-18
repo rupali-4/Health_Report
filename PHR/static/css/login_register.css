@@ -1,0 +1,99 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #fff;
+  overflow-x: hidden; /* prevent horizontal scroll */
+}
+
+/* Center wrapper */
+.login-wrapper {
+  margin-top: 100px;
+  width: 100vw;
+  min-height: calc(100vh-70px);  /* subtract more, so less total height, less space at top */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15px 50px 15px;  /* top right bottom left */ 
+}
+
+/* Login form container */
+.login-form {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 20px;
+}
+
+/* Form titles */
+.login-title {
+  text-align: center;
+  color: #00b894; 
+  font-size: 28px;
+  margin: 0;
+}
+
+.login-subtitle {
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+/* Input styling */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+/* Submit button */
+.btn1 {
+  padding: 12px;
+  background-color: #00b894;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn1:hover {
+  background-color: #019875;
+}
+
+/* Forgot password link */
+.forgot-link {
+  text-align: center;
+  font-size: 14px;
+}
+
+.clean-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Optional: make help text (like password rules) smaller */
+.password-form p .helptext {
+  display: block;
+  font-size: 12px;
+  color: #888;
+}
+
+.password-form p {
+  margin-bottom: 8px;
+}
+
+.password-form ul {
+  font-size: 12px;
+  color: #888;
+  flex-direction: column;
+  align-items: normal;
+  gap: 0rem;
+}
+

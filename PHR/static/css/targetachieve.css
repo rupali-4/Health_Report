@@ -1,0 +1,116 @@
+.heas{
+    margin-bottom: 30px;
+}
+    .filter-form {
+        background-color: #fff;
+        border-radius: 10px;
+            max-width: 900px;
+    width: 100%;
+    }
+
+    .filter-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        min-width: 180px;
+    }
+
+    .form-group label {
+        font-weight: 600;
+        margin-bottom: 6px;
+        font-size: 14px;
+        color: #333;
+    }
+
+    .form-group select {
+        padding: 8px 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    .button-wrapper {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .button-wrapper button {
+        padding: 10px 20px;
+        background-color: #009879;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        font-size: 15px;
+        cursor: pointer;
+    }
+
+    .button-wrapper button:hover {
+        opacity: 0.9;
+    }
+
+    .export-links {
+        text-align: right;
+        padding-right: 10px;
+    }
+
+    .btn-export {
+        text-decoration: none;
+        color: #333;
+        font-weight: 600;
+        margin-left: 15px;
+        font-size: 14px;
+            background: darkgray;
+    padding: 10px;
+    }
+
+    .btn-export:hover {
+        text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+        .filter-row {
+            flex-direction: column;
+        }
+
+        .export-links {
+            text-align: left;
+            padding-left: 10px;
+        }
+
+        .btn-export {
+            display: inline-block;
+            margin-top: 10px;
+        }
+    }
+        table {
+            width: 90%;
+            margin: auto;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background-color: #009879;
+            color: white;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tbody tr:hover {
+            background-color: #f1f1f1;
+        }

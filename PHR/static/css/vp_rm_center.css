@@ -1,0 +1,128 @@
+.allocation-table {
+  width: 60%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  font-family: 'Segoe UI', sans-serif;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.allocation-table th,
+.allocation-table td {
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.allocation-table th {
+  background-color: #00b894;
+  color: #fff;
+}
+
+.allocation-table tr:hover {
+  background-color: #f4fdf8;
+}
+.page-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #222;
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 40px;
+    margin-bottom: 15px;
+}
+
+.allocation-form {
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    border: 1px solid #ddd;
+    max-width: 500px;
+}
+
+.allocation-form button.submit-btn {
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #20c997;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.allocation-form button.submit-btn:hover {
+    background-color: #1ca584;
+}
+
+.allocation-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.allocation-table th,
+.allocation-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.allocation-table thead th {
+    background-color: #20c997;
+    color: white;
+    font-weight: bold;
+}
+
+.no-allocations {
+    font-style: italic;
+    color: #888;
+    margin-top: 10px;
+}
+.allocation-form {
+    max-width: 400px;
+    margin: 30px auto;
+    padding: 20px;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.form-title {
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #222;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: inline-block;
+    width: 100px;
+    font-weight: 600;
+}
+
+.form-group select,
+.form-group input[type="text"],
+.form-group input[type="number"] {
+    width: calc(100% - 110px);
+    padding: 6px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.submit-btn {
+    display: block;
+    margin: 0 auto;
+    padding: 8px 18px;
+    color: white;
+    font-weight: bold;
+}

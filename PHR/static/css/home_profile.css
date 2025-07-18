@@ -1,0 +1,159 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+
+/* home page css */
+:root {
+  --extra-light: #faf5ff;
+  --max-width: 1200px;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--extra-light);
+}
+
+nav {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #eae5e5;
+  z-index: 99;
+}
+
+.nav__content {
+  max-width: var(--max-width);
+  margin: auto;
+  padding: 1rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+nav .logo a {
+  font-size: 1.9rem;
+  font-weight: 600;
+  color: #7CB342;
+  transition: 0.3s;
+  cursor: default;
+}
+
+nav .logo img {
+  height: 1.9rem;
+  margin-right: 0.5rem;
+}
+
+ul {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  list-style: none;
+}
+
+ul li a {
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  transition: 0.3s;
+}
+
+
+ul li::-webkit-scrollbar {
+  display: none;                  /* Chrome, Safari, Edge */
+}
+
+ul li a:hover {
+  border-top-color: var(--secondary-color);
+  border-bottom-color: var(--secondary-color);
+  color: var(--secondary-color);
+}
+
+/* Responsive navigation for small screens */
+@media (width < 700px) {
+  ul {
+    position: absolute;
+    width: 100%;
+    height: calc(100vh - 85px);
+    left: -100%;
+    top: 85px;
+    background-color: var(--extra-light);
+    flex-direction: column;
+    justify-content: center;
+    gap: 3rem;
+  }
+
+  ul li a {
+    font-size: 1.25rem;
+  }
+}
+
+/* profile page css */
+.sidenav {
+	height:100%;
+	width:260px;
+	position: fixed;
+	z-index:1;
+	top:0;
+	left:0;
+	background-color:#595858;
+	overflow-x: hidden;
+	padding-top:90px;
+}
+ 
+.sidenav a {
+	padding:0px 3px 6px 40px;
+	text-decoration: none;
+	font-size:20px;
+	color: #b3b0b0;
+	display:block;
+}
+ 
+.sidenav a:hover{			
+  color:#f1f1f1;
+}	
+ 
+.main_class{
+  margin-top: 100px;
+	margin-left: 260px;
+  padding: 20px;
+  width: calc(100% - 260px);
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center; /* horizontal center */
+  align-items: center;     /* vertical center */
+  flex-direction: column;  /* stack content vertically */
+  min-height: 100vh;       /* full viewport height for vertical centering */
+}
+
+.user_data {
+  display: flex;
+  align-items: center; /* vertically center text with image */
+  gap: 10px; /* space between image and text */
+  margin-top: 15px;
+}
+
+.user_data img {
+  width: 38px;     /* small like an emoji */
+  height: 38px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-left: 25px; /* adds space from the left edge */
+}
+
+.user_info h2,
+.user_info h5 {
+  margin: 0;
+  padding: 0;
+  color: rgb(243, 249, 251);
+  text-transform: uppercase;
+}
+
