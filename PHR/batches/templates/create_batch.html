@@ -1,0 +1,22 @@
+{#CM adds batch with project + quarter + enrollments#}
+{% extends "profile.html" %}
+{% load static %}
+
+{% block css %} 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/create_projectbatch.css' %}">
+{% endblock %}
+
+{% block profile_content %}
+
+    <div class="">
+        <h2>Create a New Batch</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Create Batch</button>
+        </form>
+        <br>
+    </div>
+
+{% endblock %} 
