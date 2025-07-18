@@ -1,0 +1,44 @@
+{% extends "home.html" %}
+{% load static %}
+
+{% block css %} 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login_register.css' %}">
+{% endblock %}
+
+{% block title %}
+    Login Page
+{% endblock  %}
+
+
+{% block content %}
+
+    <div class="login-wrapper">
+        <form method="post" class="login-form">
+            {% csrf_token %}
+
+            {% if msg %}
+                <div class="alert alert-danger">{{ msg }}</div>
+            {% endif %}
+
+            <h2 class="login-title">Access Your Account</h2>
+            <p class="login-subtitle">Use your registered credentials:</p>
+
+            <div class="form-group">
+                {{ form.username.label_tag }}
+                {{ form.username }}
+            </div>
+
+            <div class="form-group">
+                {{ form.password.label_tag }}
+                {{ form.password }}
+            </div>
+
+            <button class="btn1" type="submit">LOGIN</button>
+
+            <p class="forgot-link">
+                <a href="{% url 'n_forgotpassword' %}" class="clean-link">Forgot Password?</a>
+            </p>
+        </form>
+    </div>
+    
+{% endblock %}
