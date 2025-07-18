@@ -1,0 +1,125 @@
+<!-- Project drilldown: each project details: and report download option -->
+
+{% extends "profile.html" %}
+{% load static %}
+
+{% block css %} 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/projectbatch_listdetail.css' %}">
+{% endblock %}
+
+{% block profile_content %}
+
+    <div class="project-card">
+        <h2 class="project-title"> {{ project.name }} </h2>
+        <p>
+            Created by user (PMO name): {{ project.created_by }} <br>
+            Description: {{ project.description }} <br>
+            Start Date: {{ project.start_date }} <br>
+            End Date: {{ project.end_date }} <br>
+            Total target: {{ project.total_target }} <br>
+            Allocated targets: 
+            {% if user.role == 'rm' %}
+                {% if allocations %}
+                    <ul>
+                        {% for alloc in allocations %}
+                            <li>{{ alloc.vertex }} - {{ alloc.target }}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No vertex allocations for this project.</p>
+                {% endif %}
+                
+                {% if user.role == 'vp' %}
+                    <button><a href=" {% url "n_vp_allocates"%}">Allocate now</a></button>
+
+                {% elif user.role == 'rm' %}
+                    <button><a href=" {% url "n_rm_allocates"%}">Allocate now</a></button>
+                {% endif %}   
+            {% endif %} 
+        </p>
+    </div>
+
+    {% comment %} VP DETAILS  {% endcomment %}
+    {% if user.role == 'vp' %}
+        <div class="rm-table-wrapper">
+            <h3>RM Vertex Allocations</h3>
+            {% if allocations %}
+                <table class="rm-table">
+                    <thead>
+                        <tr>
+                            <th>Region Manager (RM)</th>
+                            <th>Vertex</th>
+                            <th>Target</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for alloc in allocations %}
+                        <tr>
+                            <td>{{ alloc.rm_user }}</td>
+                            <td>{{ alloc.vertex }}</td>
+                            <td>{{ alloc.target }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>No RM allocations for this project.</p>
+            {% endif %}
+        </div>
+    {% endif %}
+
+    {# Show CM Quarter Allocations #}
+    {% if user.role == 'cm' %}
+        <div style="margin-top: 20px;">    
+            {% if quarter_allocations %}
+                <div class="allocation-table-container">
+    <h2 class="table-heading">Quarter Allocations</h2>
+
+    <!-- Header -->
+    <ul class="allocation-table-row header-row">
+        <li class="cell">Quarter</li>
+        <li class="cell">Vertex</li>
+        <li class="cell">Target</li>
+    </ul>
+
+    <!-- Data Rows -->
+    {% for alloc in quarter_allocations %}
+        <ul class="allocation-table-row">
+            <li class="cell">{{ alloc.quarter }}</li>
+            <li class="cell">{{ alloc.vertex }}</li>
+            <li class="cell">{{ alloc.target }}</li>
+        </ul>
+    {% endfor %}
+</div>
+
+            {% else %}
+                <p>No quarter allocations assigned to your center for this project.</p>
+            {% endif %}
+        </div>
+    {% endif %}
+
+    {% comment %}  PMO DETAILS {% endcomment %}
+    {% if user.role == 'pmo' %}
+        {% if vertex_allocations %}
+            <table class="vertex-allocation-table">
+                <thead>
+                    <tr>
+                        <th>Vertex</th>
+                        <th>Target</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for alloc in vertex_allocations %}
+                        <tr>
+                            <td>{{ alloc.vertex }}</td>
+                            <td>{{ alloc.target }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No vertex allocations available for this project.</p>
+        {% endif %}
+    {% endif %}
+
+{% endblock %}
