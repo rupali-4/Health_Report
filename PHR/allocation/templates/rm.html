@@ -1,0 +1,67 @@
+{#RM assigns targets to centers per vertex & quarter#}
+{% extends "profile.html" %}
+{% load static %}
+
+{% block css %} 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/vp_rm_center.css' %}">
+{% endblock %}
+
+
+{% block profile_content %}
+
+    <h2 class="page-title">Allocate Target to Center (Quarter-wise)</h2>
+
+    <form method="post" class="allocation-form">
+        {% csrf_token %}
+        <h2 class="form-title">Allocate Target to Center (Quarter-wise)</h2>
+        
+        <div class="form-group">
+            {{ rmform.project.label_tag }} {{ rmform.project }}
+        </div>
+        <div class="form-group">
+            {{ rmform.vertex.label_tag }} {{ rmform.vertex }}
+        </div>
+        <div class="form-group">
+            {{ rmform.center.label_tag }} {{ rmform.center }}
+        </div>
+        <div class="form-group">
+            {{ rmform.quarter.label_tag }} {{ rmform.quarter }}
+        </div>
+        <div class="form-group">
+            {{ rmform.target.label_tag }} {{ rmform.target }}
+        </div>
+
+        <button type="submit" class="submit-btn">Assign Target</button>
+    </form>
+
+
+    <h3 class="section-title">Your Allocations</h3>
+
+    {% if has_allocations %}
+        <table class="allocation-table">
+            <thead>
+                <tr>
+                    <th>Project</th>
+                    <th>Vertex</th>
+                    <th>Center</th>
+                    <th>Quarter</th>
+                    <th>Target</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for alloc in center_assign %}
+                    <tr>
+                        <td>{{ alloc.project.name }}</td>
+                        <td>{{ alloc.vertex }}</td>
+                        <td>{{ alloc.center }}</td>
+                        <td>{{ alloc.quarter }}</td>
+                        <td>{{ alloc.target }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="no-allocations">You have not allocated any targets yet.</p>
+    {% endif %}
+
+{% endblock %}
