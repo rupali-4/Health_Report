@@ -1,0 +1,90 @@
+{% extends "profile.html" %}
+{% load static %}
+{% load querystring %}   {# use this when you want to preserve query parameters (like ?project=3&quarter=Q2) across different links, buttons, or pagination #}
+{% block css %} 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/targetachieve.css' %}">
+{% endblock %}
+{% block profile_content %}
+<h2 class="heas">Target vs Achievement Report</h2>
+
+<form method="get" class="filter-form">
+    <div class="filter-row">
+        <div class="form-group">
+            <label for="project">Project:</label>
+            <select name="project" id="project">
+                <option value="">All</option>
+                {% for p in projects %}
+                    <option value="{{ p.id }}" {% if request.GET.project == p.id|stringformat:"s" %}selected{% endif %}>{{ p.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="quarter">Quarter:</label>
+            <select name="quarter" id="quarter">
+                <option value="">All</option>
+                {% for q in quarters %}
+                    <option value="{{ q }}" {% if request.GET.quarter == q %}selected{% endif %}>{{ q }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="center">Center:</label>
+            <select name="center" id="center">
+                <option value="">All</option>
+                {% for value, label in centers %}
+                    <option value="{{ value }}" {% if request.GET.center == value %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="vertex">Vertex:</label>
+            <select name="vertex" id="vertex">
+                <option value="">All</option>
+                {% for v in vertices %}
+                    <option value="{{ v }}" {% if request.GET.vertex == v %}selected{% endif %}>{{ v }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+
+    <div class="button-wrapper">
+        <button type="submit">Apply Filters</button>
+    </div>
+
+    <div class="export-links">
+        <a href="?{% querystring 'project' 'quarter' 'center' 'vertex' %}&export=csv" class="btn-export">Export CSV</a>
+        <a href="?{% querystring 'project' 'quarter' 'center' 'vertex' %}&export=pdf" class="btn-export">Export PDF</a>
+    </div>
+</form>
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Project</th>
+            <th>Center</th>
+            <th>Batch</th>
+            <th>Quarter</th>
+            <th>Vertex</th>
+            <th>Target</th>
+            <th>Achieved</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in data %}
+        <tr>
+            <td>{{ row.project }}</td>
+            <td>{{ row.center }}</td>
+            <td>{{ row.batch }}</td>
+            <td>{{ row.quarter }}</td>
+            <td>{{ row.vertex }}</td>
+            <td>{{ row.target }}</td>
+            <td>{{ row.achieved }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
